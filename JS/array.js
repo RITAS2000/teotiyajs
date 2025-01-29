@@ -486,4 +486,295 @@ if (index1 !== -1) {
 
 // ==============================================================================
 // ? join()
-// -
+// - об'єднаннує всі елементи масиву в один рядок, вставляючи між ними вказаний роздільник;
+// - array.join(separator) За замовчуванням використовується кома (,);
+
+const words4 = ["Hello", "world", "!"];
+
+// console.log(words4.join());       // "Hello,world,!"
+// console.log(words4.join(" "));    // "Hello world !"
+// console.log(words4.join("-"));    // "Hello-world-!"
+// console.log(words4.join(""));     // "Helloworld!"
+
+const numbers10 = [1, 2, 3, 4, 5];
+
+// console.log(numbers10.join(" + ")); // "1 + 2 + 3 + 4 + 5"
+// console.log(numbers10.join(" → ")); // "1 → 2 → 3 → 4 → 5"10
+
+const items = ["<li>Apple</li>", "<li>Banana</li>", "<li>Cherry</li>"];
+const listHTML = "<ul>" + items.join("") + "</ul>";
+
+// console.log(listHTML);
+// "<ul><li>Apple</li><li>Banana</li><li>Cherry</li></ul>"
+
+const emptyArray = [];
+
+// console.log(emptyArray.join("-")); // ""
+// console.log(emptyArray.join()); // "" Якщо масив порожній, результат буде порожнім рядком ("")
+
+const board = [
+  ["R", "N", "B", "Q", "K", "B", "N", "R"],
+  ["P", "P", "P", "P", "P", "P", "P", "P"],
+  [" ", " ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " ", " "],
+  ["p", "p", "p", "p", "p", "p", "p", "p"],
+  ["r", "n", "b", "q", "k", "b", "n", "r"],
+];
+
+// console.log(board.map(row => row.join(" ")).join("\n"));
+
+// ==============================================================================
+// ? keys
+// - повертає ітератор, який містить ключі (індекси) елементів масиву;
+// TODO keys() з forEach() (⚠️ НЕ працює напряму!) треба пертворити у масив
+const fruits7 = ["apple", "banana", "cherry"];
+const iterator2 = fruits7.keys(); // треба перебрати ітератор або зробити масив
+
+for (let key of iterator2) {
+  //   console.log(key);
+}
+
+const numbers11 = [10, 20, 30, 40];
+const keysArray = Array.from(numbers11.keys());
+
+// console.log(keysArray); // [0, 1, 2, 3]
+
+const emptyArray1 = new Array(5); // Навіть якщо масив пустий (але має довжину), keys() повертає індекси.
+const keysIterator = emptyArray1.keys();
+
+for (let key of keysIterator) {
+  //   console.log(key);
+}
+const letters2 = ["a", "b", "c"];
+Array.from(letters2.keys()).forEach(key => {
+  //   console.log(key);
+});
+
+const tableData = ["John", "Doe", 25, "Developer"];
+
+const keys = tableData.keys();
+for (let key of keys) {
+  //   console.log(`Column ${key}: ${tableData[key]}`);
+}
+// Column 0: John
+// Column 1: Doe
+// Column 2: 25
+// Column 3: Developer
+// TODO Щоб побачити всі значення, треба розгорнути ітератор у масив: console.log([...iterator]);
+
+// ==============================================================================
+// ? lastIndexOf()
+// - шукає в масиві останнє входження заданого значення і повертає його індекс. Якщо значення не знайдено, повертає -1
+// - array.lastIndexOf(searchElement, fromIndex);
+
+const numbers12 = [2, 5, 9, 2, 5, 7, 2, 4];
+// console.log(numbers12.lastIndexOf(2)); // 6 (останній "2" на індексі 6)
+// console.log(numbers12.lastIndexOf(5)); // 4 (останній "5" на індексі 4)
+// console.log(numbers12.lastIndexOf(10)); // -1 (немає такого числа)
+
+const letters3 = ["a", "b", "c", "a", "b", "c"];
+// console.log(letters3.lastIndexOf('b', 3));  // 1 (останній "b" до індексу 3)
+// console.log(letters3.lastIndexOf('c', 4));  // 2 (останній "c" до індексу 4)
+
+// ==============================================================================
+// ? map()
+// - створює новий масив, виконуючи задану функцію для кожного елемента вихідного масиву;
+// - array.map(callback(element, index, array), thisArg)
+
+const numbers13 = [1, 2, 3, 4, 5];
+const squared = numbers13.map(num => num ** 2);
+// console.log(squared);  // Виведе: [1, 4, 9, 16, 25]13
+
+const words = ["hello", "world", "javascript"];
+const upperCaseWords = words.map(word => word.toUpperCase());
+// console.log(upperCaseWords); // Виведе: ["HELLO", "WORLD", "JAVASCRIPT"]
+
+const users2 = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 22 },
+];
+
+const names1 = users2.map(user => user.name);
+// console.log(names1); // Виведе: ["Alice", "Bob", "Charlie"]
+// TODO Без {} функція автоматично повертає результат виразу.
+// TODO З {} треба обов’язково писати return, інакше буде undefined.
+
+// ==============================================================================
+// ? pop()
+// – видаляє останній елемент масиву і повертає його.
+// - Якщо масив порожній – повертає undefined;
+// - змінює оригінальний масив.
+// - Якщо масив порожній – повертає undefined
+
+const fruits4 = ["apple", "banana", "cherry"];
+
+const lastFruit = fruits4.pop(); // Видаляємо останній елемент
+
+// console.log(lastFruit); // "cherry"
+// console.log(fruits4);    // ["apple", "banana"] (масив змінився)
+
+const emptyArr = [];
+
+const removed = emptyArr.pop();
+
+// console.log(removed);  // undefined
+// console.log(emptyArr); // [] (масив залишається порожнім)
+
+// ==============================================================================
+// ? push()
+// – додає один або кілька елементів у кінець масиву.
+// - змінює оригінальний масив;
+// - array.push(element1, element2, ...);
+// - Повертає довжина масиву;
+
+const fruits14 = ["apple", "banana"];
+const newLength = fruits14.push("cherry"); // Додаємо "cherry"
+// console.log(fruits14); // ["apple", "banana", "cherry"]
+// console.log(newLength); // 3 (нова довжина масиву)
+
+const numbers = [1, 2, 3];
+numbers.push(4, 5, 6);
+// console.log(numbers);  // [1, 2, 3, 4, 5, 6]
+
+const emptyArr2 = [];
+emptyArr2.push("first item");
+// console.log(emptyArr2); // ["first item"]
+// TODO працює з порожнім масивом.
+
+// ==============================================================================
+// ? reduce()
+// – метод масиву, який зводить його до одного значення;
+// - виконує функцію-колбек на кожному елементі масиву, накопичуючи результат;
+// - array.reduce((accumulator, currentValue, index, array) => {Логіка обробки}, initialValue);
+
+const numbers14 = [1, 2, 3, 4, 5];
+const sum1 = numbers14.reduce((acc, num) => acc + num, 0);
+// console.log(sum1);  // 15
+
+const nums = [10, 5, 8, 20, 3];
+const maxNum = nums.reduce((max, num) => (num > max ? num : max), nums[0]);
+// console.log(maxNum);  // 20
+
+const fruits15 = ["apple", "banana", "apple", "orange", "banana", "apple"];
+const count = fruits15.reduce((acc, fruit) => {
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
+}, {});
+// console.log(count); // { apple: 3, banana: 2, orange: 1 }
+// - створює об'єкт, де рахує, скільки разів зустрічається кожен фрукт.
+
+const people = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 35 },
+];
+const totalAge = people.reduce((acc, person) => acc + person.age, 0);
+// console.log(totalAge); // 90
+// - підсумовує значення властивості age всіх об'єктів у масиві.
+// TODO Без initialValue метод візьме перший елемент масиву як стартове значення.
+
+// ==============================================================================
+// ? reduceRight()
+// - працює так само, як reduce(), але проходить масив справа наліво (з кінця до початку)
+
+const words5 = ["world", "the", "to", "Welcome"];
+const sentence2 = words5.reduceRight((acc, word) => acc + " " + word);
+// console.log(sentence2); // "Welcome to the world"
+
+const numbers15 = [3, 4, 7];
+const result4 = numbers15.reduceRight((acc, num) => acc / num);
+// console.log(result4); // 7 / 4 / 3 = 0.583....
+
+const nestedArrays = [
+  [3, 4],
+  [1, 2],
+  [5, 6],
+];
+const flattened3 = nestedArrays.reduceRight((acc, arr) => acc.concat(arr), []);
+// console.log(flattened3); // [5, 6, 1, 2, 3, 4]
+// - об'єднує вкладені масиви в один, починаючи з кінця масиву. Це змінює порядок елементів у порівнянні з reduce();
+
+// ==============================================================================
+// ? reverse()
+// -  змінює порядок елементів у масиві на протилежний. Він мутує (змінює) сам масив і повертає його;
+// щоб отримати новий масив, не змінюючи старий, можна використовувати .slice()
+
+const numbers16 = [1, 2, 3, 4, 5];
+numbers16.reverse();
+// console.log(numbers16); // [5, 4, 3, 2, 1]
+
+const numbers17 = [1, 2, 3, 4, 5];
+const reversedNumbers = numbers17.slice().reverse();
+// console.log(reversedNumbers); // [5, 4, 3, 2, 1]
+// console.log(numbers17); // [1, 2, 3, 4, 5] (НЕ змінився)
+
+const users3 = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 3, name: "Charlie" },
+];
+
+users3.reverse();
+// console.log(users3);
+// Виведе:
+// [
+//   { id: 3, name: "Charlie" },
+//   { id: 2, name: "Bob" },
+//   { id: 1, name: "Alice" }
+// ]
+
+// ==============================================================================
+// ? shift()
+// - використовується для видалення першого елемента з масиву та повертає його значення. Після видалення елемента індекси решти елементів зсуваються на один вліво.
+// - Повертає значення елемента, який був видалений (перший елемент масиву).
+// - Якщо масив порожній, повертає undefined.
+
+let fruits5 = ["apple", "banana", "cherry"];
+let firstFruit = fruits5.shift();
+// console.log(firstFruit); // "apple"
+// console.log(fruits5); // ['banana', 'cherry']
+
+// ==============================================================================
+// ? slice()
+// - використовується для створення нової копії частини масиву, не змінюючи оригінальний масив. Він приймає два параметри: початковий індекс і кінцевий індекс (не включаючи його), і повертає новий масив, що містить елементи між цими індексами.
+// - array.slice(start, end);
+// start (необов'язковий): Індекс, з якого починається копіювання елементів (включаючи цей індекс). Якщо значення від'ємне, воно вказує на кількість елементів з кінця масиву.
+// end (необов'язковий): Індекс, на якому копіювання завершується (не включаючи цей індекс). Якщо не вказано, копіювання буде йти до кінця масиву.
+// - повертає новий масив, що містить копію елементів з масиву (або символів з рядка), починаючи з індексу start і закінчуючи індексом end.
+
+let fruits6 = ["apple", "banana", "cherry", "date", "elderberry"];
+
+let slicedFruits1 = fruits6.slice(1, 4);
+
+// console.log(slicedFruits1); // ['banana', 'cherry', 'date']
+// console.log(fruits6); // ['apple', 'banana', 'cherry', 'date', 'elderberry'] (масив оригінальний не змінено)
+let slicedFruits2 = fruits6.slice(-3, -1);
+// console.log(slicedFruits2); // ['cherry', 'date']
+
+// ==============================================================================
+// ? some()
+// - перевіряє, чи хоча б один елемент масиву задовольняє умові, яку вказує передана функція. Він повертає булеве значення: true, якщо хоча б один елемент проходить перевірку, і false, якщо жоден не проходить
+// - array.some(callback(currentValue, index, array), thisArg);
+
+const numbers18 = [2, 4, 6, 7, 10];
+const hasOddNumber = numbers18.some(num => num % 2 !== 0);
+// console.log(hasOddNumber); // true (є непарне число 7)
+
+const words6 = ["apple", "banana", "cherry", "avocado"];
+const startsWithA = words6.some(word => word.startsWith("a"));
+console.log(startsWithA); // true (є слово, яке починається на 'a')
+// TODO Якщо масив порожній, метод завжди повертає false, оскільки немає елементів для перевірки
+
+// ==============================================================================
+// ? sort()
+// - використовується для сортування елементів масиву на місці
+// - змінює потосний масив
+// - може призводити до неочікуваних результатів при сортуванні чисел. Тому часто застосовують власні функції порівняння для точнішого сортування.
+// - array.sort([compareFunction]);
+
+const numbers19 = [10, 5, 8, 1, 7];
+numbers19.sort((a, b) => a - b);
+// console.log(numbers19); // [1, 5, 7, 8, 10]
