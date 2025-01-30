@@ -765,16 +765,210 @@ const hasOddNumber = numbers18.some(num => num % 2 !== 0);
 
 const words6 = ["apple", "banana", "cherry", "avocado"];
 const startsWithA = words6.some(word => word.startsWith("a"));
-console.log(startsWithA); // true (є слово, яке починається на 'a')
+// console.log(startsWithA); // true (є слово, яке починається на 'a')
 // TODO Якщо масив порожній, метод завжди повертає false, оскільки немає елементів для перевірки
 
 // ==============================================================================
 // ? sort()
-// - використовується для сортування елементів масиву на місці
-// - змінює потосний масив
+// - використовується для сортування елементів масиву на місці (рядки сортуться за алфавітом)
+// - змінює поточний масив
 // - може призводити до неочікуваних результатів при сортуванні чисел. Тому часто застосовують власні функції порівняння для точнішого сортування.
 // - array.sort([compareFunction]);
 
 const numbers19 = [10, 5, 8, 1, 7];
 numbers19.sort((a, b) => a - b);
 // console.log(numbers19); // [1, 5, 7, 8, 10]
+
+const users4 = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 20 },
+  { name: "Charlie", age: 30 },
+];
+// Сортуємо за віком (зростання)
+users4.sort((a, b) => a.age - b.age);
+// console.log(users4);
+// [
+//   { name: "Bob", age: 20 },
+//   { name: "Alice", age: 25 },
+//   { name: "Charlie", age: 30 },
+// ];
+
+// ==============================================================================
+// ? splice()
+// - змінює масив
+// - Використовується для видалення, додавання або заміни елементів;
+// - Повертає масив видалених елементів
+// - array.splice(start, deleteCount, item1, item2, ...);
+// start – індекс, з якого починається зміна масиву.
+// deleteCount – скільки елементів потрібно видалити (якщо 0, видалення не відбувається).
+// item1, item2, ... – елементи, які потрібно вставити (необов'язково).
+
+const array24 = [1, 2, 3, 4, 5];
+array24.splice(2, 2); // Видаляє 2 елементи, починаючи з індексу 2
+// console.log(array24); // [1, 2, 5]
+
+let array25 = [1, 2, 5];
+array25.splice(2, 0, 3, 4); // Додає 3 і 4 на місце індексу 2
+// console.log(array25); // [1, 2, 3, 4, 5]
+
+let array26 = [1, 2, 3, 4, 5];
+array26.splice(1, 2, "a", "b"); // Видаляє 2 елементи з індексу 1 та вставляє 'a', 'b'
+// console.log(array26); // [1, 'a', 'b', 4, 5]
+
+let array27 = [10, 20, 30, 40];
+let removed1 = array27.splice(1, 2); // Видаляє [20, 30]
+// console.log(array27); // [10, 40]
+// console.log(removed1); // [20, 30] повертає видалені елементи
+
+let array28 = [10, 20, 30, 40, 50];
+array28.splice(2); // Видаляє всі елементи, починаючи з індексу 2
+// console.log(array28); // [10, 20]
+// Якщо передати тільки start, то видаляється все з цього індексу до кінця масиву.
+
+// ==============================================================================
+// ? toLocaleString()
+// - використовується для форматування дат, чисел або валют згідно з локаллю користувача або заданими параметрами. Він дозволяє вивести значення у вигляді рядка в залежності від мовних та регіональних налаштувань.
+// - автоматично викликає toString() на кожному елементі масиву перед форматуванням
+// - value.toLocaleString([locales[, options]])
+// locales (необов'язковий): Мова або локаль для форматування. Якщо не вказано, використовується стандартна локаль браузера.
+// options (необов'язковий): Об'єкт з параметрами для налаштування форматування.
+
+const numbers20 = [1000, 2000, 3000, 4000];
+
+// console.log(numbers20.toLocaleString("en-US")); // "1,000,2,000,3,000,4,000" (для США)
+// console.log(numbers20.toLocaleString("de-DE")); // "1.000,2.000,3.000,4.000" (для Німеччини)
+// console.log(numbers20.toLocaleString("uk-UA")); // "1 000,2 000,3 000,4 000" (для України)
+
+let dates = [new Date(2025, 0, 1), new Date(2025, 1, 1)];
+// console.log(dates.toLocaleString('en-US')); // "1/1/2025, 2/1/2025"
+// console.log(dates.toLocaleString('uk-UA')); // "01.01.2025, 01.02.2025"
+
+let amounts = [1000.123, 2000.456, 3000.789];
+// console.log(amounts.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+// "$1,000.12, $2,000.46, $3,000.79"
+// console.log(amounts.toLocaleString('uk-UA', { style: 'currency', currency: 'UAH' }));
+// "1 000,12 грн, 2 000,46 грн, 3 000,79 грн"
+
+let mixedArray = [1000, new Date(2025, 0, 1), "hello", 5000];
+// console.log(mixedArray.toLocaleString("en-US")); // "1,000,1/1/2025, 12:00:00 AM, hello, 5,000
+// TODO зручно для виведення даних в інтерфейсі користувача, де важливо враховувати мову і регіональні налаштування.
+
+// ==============================================================================
+// ? toReversed()
+// - створити новий масив, у якому елементи розташовані в зворотному порядку відносно оригінального масиву
+
+let numbers21 = [1, 2, 3, 4, 5];
+let reversedNumbers1 = numbers21.toReversed();
+// console.log(reversedNumbers1); // [5, 4, 3, 2, 1]
+// console.log(numbers21);        // [1, 2, 3, 4, 5] (оригінальний масив не змінено)
+
+let words7 = ["apple", "banana", "cherry"];
+let reversedWords = words7.toReversed();
+// console.log(reversedWords); // ['cherry', 'banana', 'apple']
+// console.log(words7); // ['apple', 'banana', 'cherry'] (оригінальний масив не змінено)
+
+// ==============================================================================
+// ? toSorted()
+// - дозволяє створити новий масив, який є відсортованим за вказаним порядком, при цьому не змінюючи оригінальний масив
+// - let sortedArray = array.toSorted([compareFunction]);
+// - compareFunction (необов'язковий) — функція, яка визначає порядок сортування. Якщо її не вказати, масив буде відсортовано за замовчуванням (для чисел - за зростанням, для рядків - в лексикографічному порядку).
+
+let numbers22 = [5, 3, 8, 1, 2];
+let sortedNumbers1 = numbers22.toSorted();
+// console.log(sortedNumbers1); // [1, 2, 3, 5, 8]
+// console.log(numbers22);     // [5, 3, 8, 1, 2] (оригінальний масив не змінено)
+
+let sortedNumbers2 = numbers22.toSorted((a, b) => b - a);
+// console.log(sortedNumbers2); // [8, 5, 3, 2, 1]
+// console.log(numbers22); // [5, 3, 8, 1, 2] (оригінальний масив не змінено)
+
+let words8 = ["banana", "apple", "cherry", "date"];
+let sortedWords = words8.toSorted();
+// console.log(sortedWords); // ['apple', 'banana', 'cherry', 'date']
+// console.log(words8); // ['banana', 'apple', 'cherry', 'date'] (оригінальний масив не змінено)
+
+let people1 = [
+  { name: "John", age: 25 },
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 20 },
+];
+
+let sortedPeople = people1.toSorted((a, b) => a.age - b.age);
+// console.log(sortedPeople); // [{ name: 'Bob', age: 20 }, { name: 'John', age: 25 }, { name: 'Alice', age: 30 }]
+// console.log(people1);       // [{ name: 'John', age: 25 }, { name: 'Alice', age: 30 }, { name: 'Bob', age: 20 }]
+
+// ==============================================================================
+// ? toSpliced()
+// - дозволяє створити новий масив, який є копією вихідного, але з видаленими елементами і/або вставленими новими елементами
+// - const newArray = array.toSpliced(start, deleteCount, ...items);
+
+const numbers23 = [1, 2, 3, 4, 5];
+const newNumbers1 = numbers23.toSpliced(2, 2);
+// console.log(newNumbers1); // [1, 2, 5]
+// console.log(numbers23); // [1, 2, 3, 4, 5] (оригінальний масив не змінено)
+
+const numbers24 = [1, 2, 5];
+const newNumbers2 = numbers24.toSpliced(2, 0, 3, 4);
+// console.log(newNumbers2); // [1, 2, 3, 4, 5]
+// console.log(numbers24);   // [1, 2, 5] (оригінальний масив не змінено)
+
+// ==============================================================================
+// ? toString()
+// - Перетворює масив на рядок, розділений комами.
+
+const numbers25 = [1, 2, 3, 4];
+// console.log(numbers25.toString()); // "1,2,3,4"
+
+const fruits8 = ["apple", "banana", "cherry"];
+// console.log(fruits8.toString()); // "apple,banana,cherry"
+
+const mixedArray1 = [1, "apple", true, null]; // для null не має методу toString і повертається порожній рядок.
+// console.log(mixedArray1.toString()); // "1,apple,true,"
+
+// ==============================================================================
+// ? unshift()
+// - змінює оригінальний масив і повертає нову довжину масиву.
+// - може додавати декілька елементів відразу;
+// - Якщо масив порожній, метод додасть елементи в порожній масив
+// - array.unshift(element1, element2, ..., elementN);
+
+const fruits9 = ["banana", "orange"];
+fruits9.unshift("apple");
+// console.log(fruits9); // ["apple", "banana", "orange"]
+
+const animals = ["dog", "cat"];
+const length = animals.unshift("rabbit", "hamster");
+// console.log(animals); // ["rabbit", "hamster", "dog", "cat"]
+// console.log(length); // 4 (новий розмір масиву)
+
+// ==============================================================================
+// ? values()
+// -  повертає новий ітератор для масиву, який дозволяє пройти по його значеннях.
+// - const iterator = array.values();
+// - зручний для ітерацій через значення масиву без індексів.
+// - не змінює оригінальний масив.
+
+const fruits10 = ["apple", "banana", "cherry"];
+const iterator3 = fruits10.values();
+
+// console.log(iterator3.next().value); // "apple"
+// console.log(iterator3.next().value); // "banana"
+// console.log(iterator3.next().value); // "cherry"
+// console.log(iterator3.next().value); // undefined
+// Метод next() повертає об'єкт, який містить два властивості:
+// value — значення поточного елемента.
+// done — булевий прапор, що вказує, чи є ще елементи в колекції (коли колекція завершується, done стає true).
+
+const numbers26 = [10, 20, 30, 40];
+const iterator4 = numbers26.values();
+
+for (const value of iterator4) {
+  console.log(value);
+}
+// Виведе:
+// 10
+// 20
+// 30
+// 40
+
+// ==============================================================================
